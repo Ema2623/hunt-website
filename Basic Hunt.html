@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Hunt - Book Now</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <h2>Book Your Basic Hunt Package</h2>
+            <p>Experience an unforgettable hunting adventure with our Basic Hunt package.</p>
+            
+            <!-- Booking Form -->
+            <form id="bookingForm">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="date">Select Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="guests">Number of Guests</label>
+                <input type="number" id="guests" name="guests" min="1" max="5" required>
+
+                <label for="message">Additional Message (Optional)</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <h3>Bank Transfer Details:</h3>
+                <div class="bank-details">
+                    <p><strong>Bank Name:</strong> Capitec</p>
+                    <p><strong>Account Name:</strong> Berger Hunt Pty(Ltd)</p>
+                    <p><strong>Account Number:</strong> 1810547294</p>
+                    <p><strong>Branch Code:</strong> 470010</p>
+                    <p><strong>SWIFT Code:</strong> XYZB987</p>
+                    <p><strong>Amount:</strong> R3,500</p>
+                    <p>Please use your **full name** as the payment reference and email us the proof of payment.</p>
+                </div>
+
+                <button type="submit">Submit Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get form data
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let date = document.getElementById("date").value;
+            let guests = document.getElementById("guests").value;
+            let message = document.getElementById("message").value;
+            
+            // Prepare email content
+            let subject = encodeURIComponent("New Basic Hunt Booking");
+            let body = encodeURIComponent(
+                `Full Name: ${name}\nEmail: ${email}\nDate: ${date}\nGuests: ${guests}\nMessage: ${message}\n\nPlease confirm my booking.`
+            );
+
+            // Open default email app
+            window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+            
+            alert("Your booking details have been sent to our email. Please complete the payment via bank transfer.");
+        });
+    </script>
+
+</body>
+</html>
